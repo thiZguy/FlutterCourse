@@ -1,12 +1,31 @@
+import './product_admin.dart';
 import 'package:flutter/material.dart';
-import 'package:f_test_mac/products_manager.dart';
+import '../products_manager.dart';
 
-class HomeScreen extends StatelessWidget {
+class ProductsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: Column(
+          children: <Widget>[
+            AppBar(
+              automaticallyImplyLeading: false,
+              title: Text('Choose'),
+            ),
+            ListTile(
+              title: Text('Manage Products'),
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => ProductAdminScreen())
+              ),
+            )
+          ],
+        ),
+      ),
       appBar: AppBar(
-        title: Text('Text Test'),
+        title: Text('Products'),
       ),
       body: ProductManager()
     );

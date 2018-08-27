@@ -1,5 +1,5 @@
-import 'package:f_test_mac/products_manager.dart';
-import 'package:f_test_mac/screens/home.dart';
+import './screens/auth.dart';
+import 'package:f_test_mac/screens/products.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter/rendering.dart';
 
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
             brightness: Brightness.light,
             primarySwatch: Colors.deepPurple,
             accentColor: Colors.deepPurpleAccent),
-        home: HomeScreen(),
+        home: AuthScreen(),
     );
   }
 }
