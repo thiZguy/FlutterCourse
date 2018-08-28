@@ -11,7 +11,7 @@ class AuthScreen extends StatelessWidget {
         body: Center(
           child: RaisedButton(
             onPressed: () {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => ProductsScreen()));
+              Navigator.pushReplacementNamed(context, '/');
             },
             child: Text('LOGIN'),
           ),
