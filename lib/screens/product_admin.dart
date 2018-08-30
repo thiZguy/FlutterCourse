@@ -1,10 +1,14 @@
 import './create_product.dart';
 import './list_product.dart';
 
-import './products.dart';
 import 'package:flutter/material.dart';
 
 class ProductAdminScreen extends StatelessWidget {
+  final Function addProduct;
+  final Function deleteProduct;
+
+  ProductAdminScreen(this.addProduct, this.deleteProduct);
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -34,7 +38,7 @@ class ProductAdminScreen extends StatelessWidget {
               ]),
             ),
             body: TabBarView(children: [
-              ProductCreateTab(),
+              ProductCreateTab(addProduct),
               ProductListTab()
             ])));
   }

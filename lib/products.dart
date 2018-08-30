@@ -2,9 +2,8 @@ import './screens/product.dart';
 import 'package:flutter/material.dart';
 
 class Products extends StatelessWidget {
-  final List<Map> products;
-  final Function deleteProduct;
-  Products(this.products, {this.deleteProduct}) {
+  final List<Map<String, dynamic>> products;
+  Products(this.products) {
     print('[Products Widget] constructor');
   }
 
@@ -22,7 +21,7 @@ class Products extends StatelessWidget {
                 onPressed: () => Navigator.pushNamed<bool>(context, '/product/' + index.toString())
                   .then((bool value) {
                   if(value) {
-                    deleteProduct(index);
+//                    deleteProduct(index);
                   }
                 }),
               )

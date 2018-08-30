@@ -20,7 +20,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  List<Map<String, String>> _products = [];
+  List<Map<String, dynamic>> _products = [];
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +28,13 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
           brightness: Brightness.light,
           primarySwatch: Colors.deepPurple,
-          accentColor: Colors.deepPurpleAccent),
+          accentColor: Colors.deepPurpleAccent
+      ),
 //        home: AuthScreen(),
       routes: {
-        '/': (BuildContext context) => ProductsScreen(_products, _addProduct, _deleteProduct),
-        '/admin': (BuildContext context) => ProductAdminScreen(),
+        '/': (BuildContext context) => ProductsScreen(_products),
+        '/admin': (BuildContext context) =>
+            ProductAdminScreen(_addProduct, _deleteProduct),
       },
       onGenerateRoute: (RouteSettings settings) {
         final List<String> pathElements = settings.name.split('/');
@@ -48,12 +50,14 @@ class _MyAppState extends State<MyApp> {
         return null;
       },
       onUnknownRoute: (RouteSettings settings) {
-        return MaterialPageRoute(builder: (BuildContext context) => ProductsScreen(_products, _addProduct, _deleteProduct));
+        return MaterialPageRoute(
+            builder: (BuildContext context) =>
+                ProductsScreen(_products));
       },
     );
   }
 
-  void _addProduct(Map<String, String> product) {
+  void _addProduct(Map<String, dynamic> product) {
     setState(() {
       print(product);
       _products.add(product);

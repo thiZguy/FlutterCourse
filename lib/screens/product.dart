@@ -9,20 +9,28 @@ class ProductScreen extends StatelessWidget {
   ProductScreen(this.productText, this.productImage);
 
   _showWarningDialog(BuildContext context) {
-    showDialog(context: context, builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text('Are you sure?'),
-        content: Text('This action cannot be undone!'),
-        actions: <Widget>[
-          FlatButton(onPressed: () {
-            Navigator.pop(context);
-          }, child: Text('DISCARD')),
-          FlatButton(onPressed: () {
-            Navigator.pop(context, true);
-          }, child: Text('CONTINUE'))
-        ],
-      );
-    });
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Are you sure?'),
+            content: Text('This action cannot be undone!'),
+            actions: <Widget>[
+              FlatButton(
+                  child: Text('DISCARD'),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  }),
+              FlatButton(
+                child: Text('CONTINUE'),
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.pop(context, true);
+                },
+              )
+            ],
+          );
+        });
   }
 
   @override
