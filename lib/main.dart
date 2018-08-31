@@ -25,19 +25,20 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      theme: ThemeData(
-          brightness: Brightness.light,
-          primarySwatch: Colors.deepPurple,
-          accentColor: Colors.deepPurpleAccent
-      ),
+    theme: ThemeData(
+    brightness: Brightness.light,
+    primarySwatch: Colors.blue,
+    accentColor: Colors.blueAccent
+    ),
 //        home: AuthScreen(),
-      routes: {
-        '/': (BuildContext context) => ProductsScreen(_products),
-        '/admin': (BuildContext context) =>
-            ProductAdminScreen(_addProduct, _deleteProduct),
-      },
-      onGenerateRoute: (RouteSettings settings) {
-        final List<String> pathElements = settings.name.split('/');
+    routes: {
+      '/': (BuildContext context) => AuthScreen(),
+      '/admin': (BuildContext context) =>
+          ProductAdminScreen(_addProduct, _deleteProduct),
+      '/products': (BuildContext context) => ProductsScreen(_products),
+    },
+    onGenerateRoute: (RouteSettings settings) {
+      final List<String> pathElements = settings.name.split('/');
         if (pathElements[0] != '') {
           return null;
         }
