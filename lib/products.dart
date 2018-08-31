@@ -12,13 +12,23 @@ class Products extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Image.asset(products[index]['image']),
-          Text(products[index]['title']),
+          Padding(
+            padding: EdgeInsets.only(top: 10.0),
+            child: Text(
+              products[index]['title'],
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 26.0,
+                  fontFamily: 'Oswald'),
+            ),
+          ),
           ButtonBar(
             alignment: MainAxisAlignment.center,
             children: <Widget>[
               FlatButton(
                 child: Text('details'),
-                onPressed: () => Navigator.pushNamed(context, '/product/' + index.toString()),
+                onPressed: () => Navigator.pushNamed<bool>(
+                    context, '/product/' + index.toString()),
               )
             ],
           ),

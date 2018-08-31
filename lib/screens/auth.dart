@@ -9,8 +9,9 @@ class AuthScreen extends StatefulWidget {
 }
 
 class AuthScreenState extends State<AuthScreen> {
-  String emailVal = '';
-  String passwordVal = '';
+  String _emailVal = '';
+  String _passwordVal = '';
+  bool _acceptTerms = false;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class AuthScreenState extends State<AuthScreen> {
                 ),
                 onChanged: (String email) {
                   setState(() {
-                    emailVal = email;
+                    _emailVal = email;
                   });
                 },
               ),
@@ -40,11 +41,19 @@ class AuthScreenState extends State<AuthScreen> {
                 ),
                 onChanged: (String password) {
                   setState(() {
-                    passwordVal = password;
+                    _passwordVal = password;
                   });
                 },
                 obscureText: true,
               ),
+              SwitchListTile(
+                value: _acceptTerms,
+                title: Text('Accept Terms'),
+                onChanged: (bool value) {
+                setState(() {
+                  _acceptTerms = value;
+                });
+              }),
               SizedBox(
                 height: 10.0,
               ),
@@ -52,7 +61,7 @@ class AuthScreenState extends State<AuthScreen> {
                 color: Theme.of(context).accentColor,
                 textColor: Colors.white,
                 onPressed: () {
-                  if (passwordVal.isNotEmpty && emailVal.isNotEmpty) {
+                  if (_passwordVal.isNotEmpty && _emailVal.isNotEmpty) {
                     Navigator.pushReplacementNamed(context, '/products');
                   }
                 },
