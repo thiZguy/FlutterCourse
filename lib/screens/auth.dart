@@ -20,55 +20,71 @@ class AuthScreenState extends State<AuthScreen> {
           title: Text('Login'),
         ),
         body: Container(
-          margin: EdgeInsets.all(30.0),
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage('assets/background.jpg'),
+                  colorFilter: ColorFilter.mode(
+                      Colors.black.withOpacity(0.3), BlendMode.dstATop))),
+          padding: EdgeInsets.all(30.0),
           child: Center(
-              child: ListView(
-            children: <Widget>[
-              TextField(
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  labelText: 'Email',
-                ),
-                onChanged: (String email) {
-                  setState(() {
-                    _emailVal = email;
-                  });
-                },
+            child: SingleChildScrollView(
+              child: Column(
+                  children: <Widget>[
+                    TextField(
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        labelText: 'Email',
+                        filled: true,
+                        fillColor: Colors.white,
+                      ),
+                      onChanged: (String email) {
+                        setState(() {
+                          _emailVal = email;
+                        });
+                      },
+                    ),
+                    SizedBox(
+                      height: 5.0
+                    ),
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Password',
+                        filled: true,
+                        fillColor: Colors.white,
+                      ),
+                      onChanged: (String password) {
+                        setState(() {
+                          _passwordVal = password;
+                        });
+                      },
+                      obscureText: true,
+                    ),
+                    SwitchListTile(
+                      value: _acceptTerms,
+                      title: Text('Accept Terms'),
+                      onChanged: (bool value) {
+                        setState(() {
+                          _acceptTerms = value;
+                        });
+                      }),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    RaisedButton(
+                      color: Theme.of(context).accentColor,
+                      textColor: Colors.white,
+                      onPressed: () {
+                        if (_passwordVal.isNotEmpty && _emailVal.isNotEmpty) {
+                          Navigator.pushReplacementNamed(context, '/products');
+                        }
+                      },
+                      child: Text('LOGIN'),
+                    )
+                  ],
               ),
-              TextField(
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                ),
-                onChanged: (String password) {
-                  setState(() {
-                    _passwordVal = password;
-                  });
-                },
-                obscureText: true,
-              ),
-              SwitchListTile(
-                value: _acceptTerms,
-                title: Text('Accept Terms'),
-                onChanged: (bool value) {
-                setState(() {
-                  _acceptTerms = value;
-                });
-              }),
-              SizedBox(
-                height: 10.0,
-              ),
-              RaisedButton(
-                color: Theme.of(context).accentColor,
-                textColor: Colors.white,
-                onPressed: () {
-                  if (_passwordVal.isNotEmpty && _emailVal.isNotEmpty) {
-                    Navigator.pushReplacementNamed(context, '/products');
-                  }
-                },
-                child: Text('LOGIN'),
-              )
-            ],
-          )),
+            ),
+          ),
         ));
   }
 }
