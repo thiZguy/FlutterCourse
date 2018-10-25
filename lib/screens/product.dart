@@ -1,61 +1,80 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import '../widgets/ui/title_default.dart';
 
 class ProductScreen extends StatelessWidget {
   final String productText;
   final String productImage;
-
-  ProductScreen(this.productText, this.productImage);
-
-  _showWarningDialog(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Are you sure?'),
-            content: Text('This action cannot be undone!'),
-            actions: <Widget>[
-              FlatButton(
-                  child: Text('DISCARD'),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  }),
-              FlatButton(
-                child: Text('CONTINUE'),
-                onPressed: () {
-                  Navigator.pop(context);
-                  Navigator.pop(context, true);
-                },
-              )
-            ],
-          );
-        });
-  }
+  final String productDescription;
+  final double productPrice;
+  ProductScreen(this.productText, this.productImage, this.productDescription,
+      this.productPrice);
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       child: Scaffold(
           appBar: AppBar(
-            title: Text('Product Detail'),
+            title: Text(productText),
           ),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Image.asset(productImage),
               Container(
+                margin: EdgeInsets.only(top: 20.0),
+                constraints: BoxConstraints(maxHeight: 200.0, maxWidth: 500.0, minHeight: 150.0, minWidth: 350.0),
                 padding: EdgeInsets.all(10.0),
-                child: Text(productText),
-              ),
-              Container(
-                padding: EdgeInsets.all(10.0),
-                child: RaisedButton(
-                  color: Theme.of(context).accentColor,
-                  child: Text('Delete'),
-                  onPressed: () => _showWarningDialog(context),
+                decoration: ShapeDecoration(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0)),
+                    color: Colors.white,
+                    shadows: [
+                      BoxShadow(
+                          color: Colors.black38,
+                          offset: Offset(1.0, 1.0),
+                          blurRadius: 0.2),
+                      BoxShadow(
+                          color: Colors.black26,
+                          offset: Offset(2.0, 3.0),
+                          blurRadius: 0.55),
+                      BoxShadow(
+                          color: Colors.black12,
+                          offset: Offset(3.0, 5.0),
+                          blurRadius: 0.9),
+                    ]),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.only(bottom: 10.0),
+                      child: TitleDefault(productText),
+                    ),
+                    Text(
+                      productDescription,
+                      style: TextStyle(color: Colors.black54, fontSize: 18.0),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 80.0),
+                      child: Text(
+                        '\$${productPrice.toString()}',
+                        style: TextStyle(
+                          color: Colors.lightBlue, fontWeight: FontWeight.w300, fontStyle: FontStyle.italic, fontSize: 16.0),
+                      ),
+                    ),
+                  ],
                 ),
               ),
+//              Container(
+//                margin: EdgeInsets.only(top: 50.0, right: 300.0, bottom: 30.0),
+//                child: RaisedButton.icon(
+//                  label: Text('Delete'),
+//                  color: Colors.white,
+//                  icon: Icon(Icons.delete),
+//                  textColor: Colors.red,
+//                  onPressed: () => _showWarningDialog(context),
+//                ),
+//              ),
             ],
           )),
       onWillPop: () {

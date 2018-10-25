@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import './products/price_tag.dart';
-
+import './product_card.dart';
 class Products extends StatelessWidget {
   final List<Map<String, dynamic>> products;
   Products(this.products) {
@@ -8,7 +7,7 @@ class Products extends StatelessWidget {
   }
 
   Widget _buildProductItem(BuildContext context, int index) {
-    return null;
+    return ProductCard(this.products[index],index);
   }
 
   @override

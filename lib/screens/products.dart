@@ -1,4 +1,3 @@
-import './product_admin.dart';
 import 'package:flutter/material.dart';
 import '../products_manager.dart';
 
@@ -17,6 +16,7 @@ class ProductsScreen extends StatelessWidget {
               title: Text('Choose'),
             ),
             ListTile(
+              leading: Icon(Icons.edit),
               title: Text('Manage Products'),
               onTap: () => Navigator.pushReplacementNamed(
                 context,
@@ -28,6 +28,9 @@ class ProductsScreen extends StatelessWidget {
       ),
       appBar: AppBar(
         title: Text('Products'),
+        actions: <Widget>[
+          IconButton(icon: Icon(Icons.favorite), onPressed: () {})
+        ],
       ),
       body: ProductManager(products)
     );
