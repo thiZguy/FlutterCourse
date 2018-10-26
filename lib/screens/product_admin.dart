@@ -9,28 +9,32 @@ class ProductAdminScreen extends StatelessWidget {
 
   ProductAdminScreen(this.addProduct, this.deleteProduct);
 
+  Drawer _buildNavegationDrawerElement(BuildContext context) {
+    return Drawer(
+      child: Column(
+        children: <Widget>[
+          AppBar(
+            automaticallyImplyLeading: false,
+            title: Text('Choose'),
+          ),
+          ListTile(
+            leading: Icon(Icons.shopping_cart),
+            title: Text('Products'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, '/products');
+            },
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
-            drawer: Drawer(
-              child: Column(
-                children: <Widget>[
-                  AppBar(
-                    automaticallyImplyLeading: false,
-                    title: Text('Choose'),
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.shopping_cart),
-                    title: Text('Products'),
-                    onTap: () {
-                      Navigator.pushReplacementNamed(context, '/products');
-                    },
-                  )
-                ],
-              ),
-            ),
+            drawer: _buildNavegationDrawerElement(context),
             appBar: AppBar(
               title: Text('Product Admin'),
               bottom: TabBar(tabs: [
